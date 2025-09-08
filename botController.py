@@ -109,7 +109,6 @@ def get_text_messages(message):
             print(f"Processing {current}/{len(checkerService.processed_urls[chat_id])}: {url}")
             data[url] = get_ad_data(url, HEADERS)
             databaseService.save_ad_to_database(data[url])
-            print(data[url])
             # bot.send_message(message.from_user.id, str(data[url]))
 
         bot.send_message(message.from_user.id, f"Done!")

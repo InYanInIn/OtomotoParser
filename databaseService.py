@@ -8,7 +8,6 @@ collection = db['Advertisement']
 
 def save_ad_to_database(VehicleAd: VehicleAd):
     insert_data = VehicleAd.to_json()
-    print("Inserting data into database:")
     collection.update_one(
         {"link": insert_data["link"]},  # Match condition
         {"$setOnInsert": insert_data},  # Insert only if not found
