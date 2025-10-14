@@ -1,3 +1,4 @@
+import os
 import time
 
 import telebot
@@ -7,8 +8,10 @@ import databaseService
 import parser
 from checkerService import check_new_ads, processed_urls
 from parser import get_urls, get_ad_data, HEADERS
+from dotenv import load_dotenv
 
-bot = telebot.TeleBot("8342546150:AAHFXPyoD9nWgx480tzjignh-pqLG6Md1a8")
+load_dotenv()
+bot = telebot.TeleBot(os.getenv("TELEGRAM_BOT_TOKEN"))
 
 
 def main_menu(chat_id):
@@ -103,7 +106,6 @@ def get_text_messages(message):
         checkerService.processed_urls[chat_id] = get_urls(message.text, HEADERS)
         data = {}
         current = 0
-        print(checkerService.processed_urls[chat_id])
         for url in checkerService.processed_urls[chat_id]:
             current += 1
             print(f"Processing {current}/{len(checkerService.processed_urls[chat_id])}: {url}")

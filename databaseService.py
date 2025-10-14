@@ -1,7 +1,13 @@
+import os
+
+from dotenv import load_dotenv
 from pymongo import MongoClient
 import VehicleAd
 
-client = MongoClient("mongodb+srv://Admin:Admin@cluster0.fkhlajk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+load_dotenv()
+
+mongo_uri = os.getenv("MONGO_URI")
+client = MongoClient(mongo_uri)
 db = client['OtomotoParserDB']                             # choose database
 collection = db['Advertisement']
 
